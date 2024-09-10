@@ -1,0 +1,32 @@
+﻿@model IEnumerable<CompletedToDoItem>
+
+@{
+    ViewData["Title"] = "CompletedTasks";
+}
+
+<h1>CompletedTasks</h1>
+
+<h2>Completed Tasks</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Task Name</th>
+            <th>Description</th>
+            <th>Completed Date</th>
+
+            <th>Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Task</td>
+                <td>@item.Description</td>
+                <td>@item.CompletedDate</td>
+                <td>✓</td> <!-- İşaretleme göstergesi -->
+            </tr>
+        }
+    </tbody>
+</table>

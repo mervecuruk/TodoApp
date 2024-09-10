@@ -1,0 +1,51 @@
+﻿@model TodoAppNew.Models.VMs.RegisterVM
+
+@{
+    ViewData["Title"] = "Register";
+}
+
+<h1 class="justify-content-center text-center text-danger">SIGN IN</h1>
+<div class="row justify-content-center text-center table table-bordered container-fluid mb-3">
+    <div class="col-md-4">
+        <form asp-action="Register" class="border border-secondary-subtle  border-3">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <b> <label asp-for="FirstName" class="control-label"></label></b>
+                <input asp-for="FirstName" class="form-control" />
+                <span asp-validation-for="FirstName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <b>  <label asp-for="LastName" class="control-label"></label></b>
+                <input asp-for="LastName" class="form-control" />
+                <span asp-validation-for="LastName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <b> <label asp-for="Email" class="control-label"></label></b>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <b> <label asp-for="Password" class="control-label"></label></b>
+                <input asp-for="Password" class="form-control" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <b> <label asp-for="ConfirmPassword" class="control-label"></label></b>
+                <input asp-for="ConfirmPassword" class="form-control" />
+                <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <b> <input type="submit" value="Sign In" class="btn btn-outline-primary" /></b>
+            </div>
+            <div>
+                <a asp-action="Login" class="justify-content-end d-flex">Login</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

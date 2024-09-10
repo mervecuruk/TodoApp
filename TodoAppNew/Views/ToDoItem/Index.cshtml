@@ -1,0 +1,73 @@
+﻿@model IEnumerable<TodoAppNew.Models.VMs.ToDoListVM>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Task)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FinishedDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Priority)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Task)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FinishedDate)
+            </td>
+            <td>
+               @Html.DisplayFor(modelItem => item.Priority) 
+                   
+            </td>
+            <td>
+             @*    @Html.DisplayFor(modelItem => item.Status) *@
+                   @*  <input type="checkbox" class="completion-checkbox" data-id="@item.Id" @(item.Priority ? "checked" : "") /> *@
+                    <form asp-action="Completed" method="post" style="display:inline;">
+                        @Html.AntiForgeryToken()
+                        <input type="hidden" name="id" value="@item.Id" />
+                        <input type="checkbox" name="completed"
+                        @(item.Status ? "checked" : "")
+                               onchange="this.form.submit()" />
+                    </form>
+            </td>
+            <td>
+                @Html.ActionLink("Update", "Update", new {  id=item.Id  }) |
+                @Html.ActionLink("Delete", "Delete", new {  id=item.Id  })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
